@@ -604,7 +604,10 @@ setInterval(function(){var r=Math.floor(Math.random()*(keyEls.length-12));[0,4,7
     window.open('https://www.youtube.com/watch?v=' + card.dataset.vid, '_blank');
   });
   items.forEach(function(item, i) {
-    item.addEventListener('click', function() { goTo(i); });
+    item.addEventListener('click', function() {
+      if (i !== current) { goTo(i); return; }
+      window.open('https://www.youtube.com/watch?v=' + cards[i].dataset.vid, '_blank');
+    });
   });
 
 
@@ -693,7 +696,7 @@ setInterval(function(){var r=Math.floor(Math.random()*(keyEls.length-12));[0,4,7
     if(!card.classList.contains('active')){goTo(i);return;}
     window.open('https://www.youtube.com/watch?v='+card.dataset.vid,'_blank');
   });
-  items.forEach(function(item,i){item.addEventListener('click',function(){goTo(i);});});
+  items.forEach(function(item,i){item.addEventListener('click',function(){if(i!==current){goTo(i);return;}window.open('https://www.youtube.com/watch?v='+cards[i].dataset.vid,'_blank');});});
   window.addEventListener('resize',function(){setPositions(current);});
   setPositions(0);
 })();setPositions(0);
